@@ -5,13 +5,15 @@ import SignUpPage from '../components/SignupPage.vue';
 import LearnMorePage from '../components/LearnMorePage.vue';
 import ChatBox from '../views/ChatBox.vue';
 //import ChatBox from '../views/ChatTest.vue';
+import HomePageTwo from '../views/HomePage2.vue';
 const routes = [
 
   { path: '/', component: HomePage },
   { path: '/login', component: LoginPage },
   { path: '/signup', component: SignUpPage },
   { path: '/learn-more', component: LearnMorePage },
-  { path: '/chatBox', component: ChatBox }
+  { path: '/chatbox', component: ChatBox },
+  { path: '/HomePageTwo', component: HomePageTwo }
 
   
 ];
