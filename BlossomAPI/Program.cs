@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<BlossomDb>(opt => opt.UseInMemoryDatabase("BlossomDB"));
+builder.Services.AddDbContext<BlossomDb>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 35))));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +35,7 @@ doctors.MapPut("/{doctorId}", UpdateDoctor);
 doctors.MapDelete("/{doctorId}", DeleteDoctor);
 
 if (app.Environment.IsDevelopment())
-doctors.MapGet("/", GetAllDoctors);
+    doctors.MapGet("/", GetAllDoctors);
 
 RouteGroupBuilder patients = app.MapGroup("/patients");
 
@@ -49,7 +49,7 @@ patients.MapGet("/{patientId}/chatsessions", GetPatientChatSessions);
 
 
 if (app.Environment.IsDevelopment())
-patients.MapGet("/", GetAllPatients);
+    patients.MapGet("/", GetAllPatients);
 
 
 
