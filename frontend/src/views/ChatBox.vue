@@ -24,6 +24,8 @@
   <script>
   import axios from 'axios';
   import { useAuth0 } from '@auth0/auth0-vue';
+  import { toRaw } from 'vue';
+
   
   export default {
     setup() {
@@ -41,25 +43,136 @@
     data() {
       return {
         userInput: "",
+        flag: "",
         messages: [
           { text: "Hello! How can I assist you today?", sender: "bot" }
-        ]
+        ],
+        diagnostics: [],
+        questions: [],
+        formQ: [],
+        len: "",
+        iter: "0"
       };
     },
     methods: {
+     async fetchMessages() {
+      try {
+
+
+        if (this.flag == "x"){
+           console.log("lots of progres")
+           const response = await axios.get("http://localhost:3000/get-res");
+           this.messages = response.data;
+           this.questions = this.messages.map(msg => toRaw(msg));
+           let i = 0;
+           while(i < this.questions.length){
+
+             this.messages.push({ text: this.questions[i], sender: "bot" });
+
+              i += 1;
+            }
+            this.flag = ""
+            this.diagnostics = []
+            this.questions = []
+            this.formQ = []
+            this.iter = "0"
+        }else{
+    
+        this.flag = "r";
+
+          if (this.iter == "0"){
+           const response = await axios.get("http://localhost:3000/get-messages");
+           this.messages = response.data;
+           this.questions = this.messages.map(msg => toRaw(msg));
+            this.len = parseInt(this.questions.length, 10);
+        }
+        let sub = Number(this.iter); 
+         sub -= this.questions.length;
+         console.log(sub);
+
+        if (sub == -1 ){
+
+            
+
+            for (let i = 0; i < this.questions.length; i++) {
+              if (i < this.questions.length) this.formQ.push(this.questions[i]);
+              if (i < this.diagnostics.length) this.formQ.push(this.diagnostics[i]);
+           }
+
+
+
+            this.flag = "x";
+            await axios.post("http://localhost:3000/save-message", { message: this.userInput, type: this.formQ});
+            setTimeout(async () => {
+              await this.fetchMessages();
+            }, 100);  
+
+        }else{ 
+        
+        console.log(this.questions[0])
+
+          let inter = parseInt(this.iter, 10)
+          inter += 1;
+          this.iter = inter;
+
+
+          this.messages.push({ text: this.questions[inter], sender: "bot" });
+        console.log("wingo")
+     }
+       console.log("ended");
+
+
+   }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+    }
+  },
+
       async sendMessage() {
+
+                    console.log("msg!")
         if (!this.userInput.trim()) return;
   
+        // Store user message
         this.messages.push({ text: this.userInput, sender: "user" });
+
+                    console.log("boing!")
+        if (this.flag == "x"){
+
+            console.log("nice going")
+        }else if (this.flag == "r"){
+
+            this.diagnostics.push(this.userInput);
+            console.log(this.diagnostics+ "yes its true ");
+
+        }else if (this.flag == ""){
+
+                    await axios.post("http://localhost:3000/save-message", { message: this.userInput, type: "script"});
+
+
+        }
+        // Save message to local file via backend API
   
-        await axios.post("http://localhost:3000/save-message", { message: this.userInput });
-  
+        // Simulate bot response
+        //run python script
+        //when finished buf.json will have completed
+        // call fetchMessages in order to see what buf.json says and provide input
         setTimeout(() => {
-          this.messages.push({ text: "Got it! Let me analyze your symptoms...", sender: "bot" });
-        }, 1000);
+            this.userInput = "";
+
+
+        }, 500);  
+
+
+        setTimeout(async () => {
+          await this.fetchMessages();
+        }, 100);      
+
   
-        this.userInput = "";
-      },
-    }
+      }
+
+
+
+    },
   };
   </script>
