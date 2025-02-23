@@ -10,14 +10,21 @@
           <button @click="goToSignUp" class="w-full p-2 text-white bg-green-500 rounded-lg hover:bg-green-600 mb-2">
             Sign Up
           </button>
-  
-          <button @click="goToLogin" class="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 mb-2">
-            Login
+
+          <button @click="goToLogout" class="w-full p-2 text-white bg-red-500 rounded-lg hover:bg-red-600 mb-2">
+            Logout
           </button>
-  
-          <button @click="goToLearnMore" class="w-full p-2 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600">
+
+          <button @click="goToLearnMore" class="w-full p-2 text-white bg-green-500 rounded-lg hover:bg-green-600 mb-2">
             Learn More
           </button>
+
+          <button @click="goToLogin" class="w-full p-2 text-white bg-red-500 rounded-lg hover:bg-red-600 mb-2">
+            Login
+          </button>
+
+
+
         </div>
       </div>
     </div>
@@ -38,6 +45,10 @@
       const goToLogin = () => {
         router.push('/login'); // Navigate to Login page
       };
+
+      const goToLogout = () => {
+        router.push('/logout'); // Navigate to Logout page
+      };
   
       const goToLearnMore = () => {
         router.push('/learn-more'); // Navigate to Learn More page
@@ -46,7 +57,9 @@
       return {
         goToSignUp,
         goToLogin,
-        goToLearnMore
+        goToLearnMore,
+        goToLogout
+        
       };
     }
   };
