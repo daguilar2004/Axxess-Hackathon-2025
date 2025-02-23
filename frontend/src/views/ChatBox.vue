@@ -1,8 +1,15 @@
 <template>
+       <button @click="logout" class="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Logout</button>
     <div class="flex h-screen">
+
       <div class="w-52 bg-gray-200 p-5 flex flex-col">
         <div class="mb-4">
           <h2 class="text-lg font-semibold">Blossom Chat</h2>
+    <div class="chat-container">
+      <div class="chat-box">
+        <div v-for="(message, index) in messages" :key="index" 
+             :class="message.sender === 'user' ? 'user-message' : 'bot-message'">
+          {{ message.text }}
         </div>
         <button class="bg-black text-white px-5 py-2 rounded-full mt-auto mx-auto mb-5">Logout</button>
       </div>
@@ -23,10 +30,25 @@
   
   <script>
   import axios from 'axios';
-  
+  import { useAuth0 } from '@auth0/auth0-vue';
+
   export default {
+    setup() {
+      const auth0 = useAuth0();
+      logout() {
+          auth0.logout({ 
+            logoutParams: { 
+              returnTo: window.location.origin 
+            } 
+          });
+
+      
+      };
+    },
+
     data() {
       return {
+      logout,
         userInput: "",
         messages: [
           { text: "Hello! How can I assist you today?", sender: "bot" }
@@ -47,9 +69,6 @@
   
         this.userInput = "";
       },
-      logout() {
-        console.log('Logout clicked');
-      }
     }
   };
   </script>
