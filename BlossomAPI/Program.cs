@@ -12,18 +12,7 @@ builder.Services.AddOpenApiDocument(config =>
     config.Version = "v1";
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: "AllOrigins",
-        policy =>
-        {
-            policy.AllowAnyOrigin().AllowAnyMethod()
-               .AllowAnyHeader();
-        });
-});
-
 var app = builder.Build();
-app.UseCors("AllOrigins");
 
 if (app.Environment.IsDevelopment())
 {
@@ -132,8 +121,7 @@ static async Task<IResult> CreatePatient(PatientDTO patientDTO, BlossomDb db)
 {
     var patient = new Patient
     {
-        Name = patientDTO.Name,
-        Email = patientDTO.Email,
+        Name = patientDTO.Name
     };
 
     if (patientDTO.DoctorId is not null)
