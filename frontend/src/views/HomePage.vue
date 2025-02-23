@@ -10,20 +10,9 @@
           <button @click="goToSignUp" class="w-full p-2 text-white bg-green-500 rounded-lg hover:bg-green-600 mb-2">
             Sign Up
           </button>
-
-          <button @click="goToLogout" class="w-full p-2 text-white bg-red-500 rounded-lg hover:bg-red-600 mb-2">
-            Logout
-          </button>
-
-          <button @click="goToLearnMore" class="w-full p-2 text-white bg-green-500 rounded-lg hover:bg-green-600 mb-2">
-            Learn More
-          </button>
-
           <button @click="goToLogin" class="w-full p-2 text-white bg-red-500 rounded-lg hover:bg-red-600 mb-2">
             Login
           </button>
-
-
 
         </div>
       </div>
@@ -32,12 +21,24 @@
   
   <script>
   import { useRouter } from 'vue-router';
+  import { useAuth0 } from "@auth0/auth0-vue";
+  import { onMounted } from "vue"
+
+
   
   export default {
+
     name: 'HomePage',
     setup() {
+      const { isAuthenticated, isLoading } = useAuth0(); // Destructure correctly to get `isAuthenticated`
       const router = useRouter(); // Ensure this is initialized
   
+      onMounted(() => {
+        if (!isLoading.value && isAuthenticated.value) {
+          router.push("/chatbox");
+        }
+      });
+
       const goToSignUp = () => {
         router.push('/signup'); // Navigate to SignUp page
       };

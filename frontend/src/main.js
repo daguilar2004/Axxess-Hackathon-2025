@@ -13,7 +13,7 @@ app.use(
     domain: "dev-qug84gqbi343u542.us.auth0.com",
     clientId: "pfjIj0QDI640Q7M2sE2bL8hwLiY4lnNF",
     authorizationParams: {
-      redirect_uri: window.location.origin,
+      redirect_uri: window.location.origin + '/chatbox',
     }
   })
 );
