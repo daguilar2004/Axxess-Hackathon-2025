@@ -23,7 +23,7 @@ class BlossomDb : DbContext
             // create test doctor
             var doctor = new Doctor
             {
-                Id = 999,
+                Id = 111,
                 Name = "Dr. Test",
                 Email = "drtest@test.com"
             };
@@ -35,7 +35,7 @@ class BlossomDb : DbContext
 
             var patient = new Patient
             {
-                Id = 999,
+                Id = 333,
                 Name = "Test Patient",
                 Email = "test@test.com",
                 Doctor = doctor
@@ -69,21 +69,35 @@ class BlossomDb : DbContext
                     new ChatMessage
                     {
                         Id = 2,
-                        Content = "Hi, I've been having this terrible headache for the past 3 days. It's mostly on one side of my head and sometimes I feel nauseous.",
+                        Content = "Hi, I've been having a headache for the past 3 days",
                         ChatSession = chatSession,
                         Sender = "User"
                     },
                     new ChatMessage
                     {
-                        Id = 3,
-                        Content = "I understand you're experiencing headaches. To help gather relevant information for a healthcare provider, could you tell me if you're sensitive to light or sound during these headaches?",
+                        Id = 35,
+                        Content = "Sorry to hear that, describe it to me.",
                         ChatSession = chatSession,
                         Sender = "Blossom"
                     },
                     new ChatMessage
                     {
                         Id = 4,
-                        Content = "Yes, actually. Bright lights really bother me when I have the headache, and I've been trying to stay in darker rooms.",
+                        Content = "mostly on one side of my head, sometimes I feel nauseous.",
+                        ChatSession = chatSession,
+                        Sender = "User"
+                    },
+                    new ChatMessage
+                    {
+                        Id = 3,
+                        Content = "could you tell me if you're sensitive to light or sound during these headaches?",
+                        ChatSession = chatSession,
+                        Sender = "Blossom"
+                    },
+                    new ChatMessage
+                    {
+                        Id = 98,
+                        Content = "Yes, actually. Bright lights really bother me when I have the headache, so been trying to stay in darker rooms",
                         ChatSession = chatSession,
                         Sender = "User"
                     },
@@ -111,7 +125,7 @@ class BlossomDb : DbContext
                     new ChatMessage
                     {
                         Id = 8,
-                        Content = "Now that you mention it, I've been really stressed at work lately and haven't been sleeping well.",
+                        Content = "Nothing in particular, but work's been rough and so has my sleep schedule especially lately",
                         ChatSession = chatSession,
                         Sender = "User"
                     },

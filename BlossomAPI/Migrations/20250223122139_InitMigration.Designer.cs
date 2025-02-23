@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlossomAPI.Migrations
 {
     [DbContext(typeof(BlossomDb))]
-    [Migration("20250223115408_Initial")]
-    partial class Initial
+    [Migration("20250223122139_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

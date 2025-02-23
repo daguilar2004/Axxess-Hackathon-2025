@@ -5,7 +5,7 @@ public class DoctorDTO {
 
     public DoctorDTO() { }
     public DoctorDTO(Doctor doctor) =>
-    (Id, Name) = (doctor.Id, doctor.Name);
+    (Id, Name, Email) = (doctor.Id, doctor.Name, doctor.Email);
 }
 
 public class PatientDTO {
@@ -16,7 +16,7 @@ public class PatientDTO {
 
     public PatientDTO() { }
     public PatientDTO(Patient patient) =>
-    (Id, Name, DoctorId) = (patient.Id, patient.Name, patient.DoctorId);
+    (Id, Name, DoctorId, Email) = (patient.Id, patient.Name, patient.DoctorId, patient.Email);
 }
 
 public class ChatSessionDTO {
@@ -31,10 +31,9 @@ public class ChatSessionDTO {
 public class ChatMessageDTO {
     public int Id { get; set; }
     public string Content { get; set; }
-    public int ChatSessionId { get; set; }
     public string Sender { get; set; }
 
     public ChatMessageDTO() { }
     public ChatMessageDTO(ChatMessage chatMessage) =>
-    (Id, Content, ChatSessionId) = (chatMessage.Id, chatMessage.Content, chatMessage.ChatSessionId);
+    (Id, Content, Sender) = (chatMessage.Id, chatMessage.Content, chatMessage.Sender);
 }
