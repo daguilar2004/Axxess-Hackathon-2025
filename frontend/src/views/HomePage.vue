@@ -58,6 +58,7 @@
 
   export default {
 
+
     name: 'HomePage',
 
     setup() {
@@ -71,21 +72,17 @@
         }
       });
 
-        const goToSignUp = () => {
-          router.push('/signup'); // Navigate to SignUp page
-        };
-
+      const goToSignUp = () => {
+        router.push('/signup'); // Navigate to SignUp page
+      };
 
       return {
         goToSignUp,
-
         Login() {
-          auth0.loginWithRedirect();
-        }
+        auth0.loginWithRedirect();
+      }
       };
     },
-
-      
     methods: {
       scrollToAuthButtons() {
         const element = document.getElementById('auth-buttons-anchor');

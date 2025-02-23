@@ -4,10 +4,11 @@ import LoginPage from '../components/LoginPage.vue';
 import SignUpPage from '../components/SignupPage.vue';
 import ChatBox from '../views/ChatBox.vue';
 const routes = [
-
-  { path: '/', component: HomePage },
   { path: '/login', component: LoginPage },
   { path: '/signup', component: SignUpPage },
+  { path: '/', component: HomePage },
+
+
   { path: '/chatbox', component: ChatBox, meta: { requiresAuth: true } }
   
 ];
