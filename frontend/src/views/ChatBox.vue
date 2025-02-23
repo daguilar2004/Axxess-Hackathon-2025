@@ -1,18 +1,10 @@
 <template>
-       <button @click="logout" class="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Logout</button>
-
+    <div class="flex h-screen">
       <div class="w-52 bg-gray-200 p-5 flex flex-col">
         <div class="mb-4">
           <h2 class="text-lg font-semibold">Blossom Chat</h2>
         </div>
-        </div>
-        <div class="chat-container">
-      <div class="chat-box">
-        <div v-for="(message, index) in messages" :key="index" 
-             :class="message.sender === 'user' ? 'user-message' : 'bot-message'">
-          {{ message.text }}
-        </div>
-        <button class="bg-black text-white px-5 py-2 rounded-full mt-auto mx-auto mb-5">Logout</button>
+        <button @click="logout" class="bg-black text-white px-5 py-2 rounded-full mt-auto mx-auto mb-5">Logout</button>
       </div>
       <div class="flex-grow flex flex-col p-5">
         <div v-for="(message, index) in messages" :key="index" :class="[
@@ -25,7 +17,6 @@
           <input v-model="userInput" placeholder="Type a message..." @keyup.enter="sendMessage" class="flex-grow p-2 border border-gray-300 rounded-md mr-2 outline-none" />
           <button @click="sendMessage" class="bg-black text-white px-5 py-2 rounded-2xl">Send</button>
         </div>
-        
       </div>
     </div>
   </template>
@@ -33,25 +24,20 @@
   <script>
   import axios from 'axios';
   import { useAuth0 } from '@auth0/auth0-vue';
-
+  
   export default {
-    
     setup() {
       const auth0 = useAuth0();
-      return{
-      logout() {
-          auth0.logout({ 
-            logoutParams: { 
-              returnTo: window.location.origin 
-            } 
+      return {
+        logout() {
+          auth0.logout({
+            logoutParams: {
+              returnTo: window.location.origin
+            }
           });
-
-        }  
+        }
       };
-    
     },
-    
-
     data() {
       return {
         userInput: "",
