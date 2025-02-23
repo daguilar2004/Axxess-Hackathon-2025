@@ -1,6 +1,7 @@
 public class DoctorDTO {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Email { get; set; }
 
     public DoctorDTO() { }
     public DoctorDTO(Doctor doctor) =>
@@ -10,6 +11,7 @@ public class DoctorDTO {
 public class PatientDTO {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Email { get; set; }
     public int? DoctorId { get; set; }
 
     public PatientDTO() { }
@@ -30,6 +32,7 @@ public class ChatMessageDTO {
     public int Id { get; set; }
     public string Content { get; set; }
     public int ChatSessionId { get; set; }
+    public string Sender { get; set; }
 
     public ChatMessageDTO() { }
     public ChatMessageDTO(ChatMessage chatMessage) =>
