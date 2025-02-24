@@ -14,7 +14,7 @@ export default {
       login() {
         auth0.loginWithRedirect();
       }
-    };
+    };  
   }
 };
 

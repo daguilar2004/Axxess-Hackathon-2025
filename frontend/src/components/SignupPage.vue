@@ -49,7 +49,7 @@
 
       <!-- Submit Button -->
       <button
-        @click="goToChatbox"
+        @click="goToHomePage"
         class="w-full p-2 text-white bg-red-500 rounded-lg hover:bg-red-600 mb-2"
       >
         Submit
@@ -59,18 +59,24 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 export default {
-  setup() {
+  setup(){
     const router = useRouter(); // Ensure this is initialized
 
-    const goToChatbox = () => {
-      router.push('/chatbox'); // Navigate to Chatbox page
-    };
+      const goToHomePage = () => {
+        router.push('/'); // Navigate to HomePage page
+      };
+      return{
+        goToHomePage
+      }
 
+  },
+  data() {
     return {
-      goToChatbox,
+      goToHomePage,
     };
   },
 };

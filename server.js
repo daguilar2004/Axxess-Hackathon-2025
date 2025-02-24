@@ -1,20 +1,34 @@
-const express = require("express");
-const fs = require("fs");
-const cors = require("cors");
-
+// server2.js
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors');
 const app = express();
-app.use(express.json());
-app.use(cors());
+const port = 3000;
 
-app.post("/save-message", (req, res) => {
-  const message = req.body.message;
-  fs.appendFile("chat-log.txt", message + "\n", (err) => {
+app.use(cors());
+app.use(express.json());
+
+app.post('/append-chat', (req, res) => {
+  const { message } = req.body;
+  fs.appendFile('chat_history.txt', '${message}\n', (err) => {
     if (err) {
-      res.status(500).send("Error saving message.");
-    } else {
-      res.send("Message saved.");
+      console.error(err);
+      return res.status(500).send('Error appending to file');
+    }
+    res.send('Message appended to file');
+  });
+});
+
+app.get('/download-chat-history', (req, res) => {
+  res.setHeader('Content-Disposition', 'attachment; filename=chat_history.txt');
+  res.sendFile(__dirname + '/chat_history.txt', (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error downloading file');
     }
   });
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(port, () => {
+  console.log('Server listening at http://localhost:${port}');
+});
