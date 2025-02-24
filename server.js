@@ -28,8 +28,7 @@ app.get("/get-messages", (req, res) => {
         }
 
     res.json(messages); // Send messages to Vue
-    console.log(messages[0])
-
+    console.log("there was nothing "+messages[0])
   });
 
 });
@@ -104,7 +103,8 @@ app.post("/save-message", (req, res) => {
  }
     
     const { spawn } = require("child_process");
-    const pythonProcess = spawn("python", [scr, message]);
+    const pythonProcess = spawn("python", ["docbot.py", message]);
+
 
     let output = "";
     pythonProcess.stdout.on("data", (data) => {
@@ -117,14 +117,9 @@ app.post("/save-message", (req, res) => {
     });
 
      
-    console.log(cat)
-
+    console.log("the "+output)
       display(cat, fl)
 
 });
-
-
-
-
 
 app.listen(3000, () => console.log("Server running on port 3000"));
