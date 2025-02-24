@@ -5,8 +5,6 @@ import ChatBox from '../views/ChatBox.vue';
 const routes = [
   { path: '/signup', component: SignUpPage },
   { path: '/', component: HomePage },
-
-
   { path: '/chatbox', component: ChatBox, meta: { requiresAuth: true } }
   
 ];
