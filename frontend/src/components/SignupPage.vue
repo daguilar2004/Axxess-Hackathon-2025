@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 export default {
@@ -73,11 +73,6 @@ export default {
         goToHomePage
       }
 
-  },
-  data() {
-    return {
-      goToHomePage,
-    };
   },
 };
 </script>

@@ -8,7 +8,7 @@
           </p>
           <div class="flex gap-7 mt-7 justify-center opacity-0 transform translate-y-5 animate-slideUpButtons" id="auth-buttons-anchor">
             <button @click="Login" class="px-5 py-2 text-lg font-bold text-white bg-transparent border-2 border-white rounded-3xl w-32 hover:text-red-500 hover:bg-white">Login</button>
-            <button class="px-5 py-2 text-lg font-bold text-white bg-transparent border-2 border-white rounded-3xl w-32 hover:text-red-500 hover:bg-white">Sign Up</button>
+            <button @click="goToSignUp" class="px-5 py-2 text-lg font-bold text-white bg-transparent border-2 border-white rounded-3xl w-32 hover:text-red-500 hover:bg-white">Sign Up</button>
           </div>
         </div>
       </div>
