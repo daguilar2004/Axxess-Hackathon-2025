@@ -15,7 +15,7 @@ with open("buf.json", "r", encoding="utf-8") as f:
 
 question_joined = "\n".join(question_list[1:])
 
-response = model.generate_content("Previously I asked you to diagnose the following symptoms: "+sick_list[0]+
+response = model.generate_content("Previously I asked you to diagnose the following symptoms: "+question_list[0]+
                                   " You said that these were the possible sicknessess -"+sick_joined+
                                   " You then asked the patient the following questions, their responses are at the end of each line \n"+question_joined+" Given the patient survey, symptoms and possible sicknesses, produce a formatted list of what might be wrong with the patient for and explain why in less than 4 sentences. Format like so: <sickness> | <explination>. Put a $ at the beginning of each listing and terminate each listing with = do not put **")
 
