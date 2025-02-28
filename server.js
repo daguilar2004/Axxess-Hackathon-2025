@@ -105,7 +105,7 @@ app.post("/save-message", (req, res) => {
  }
     
     const { spawn } = require("child_process");
-    const pythonProcess = spawn("python", ["docbot.py", message]);
+    const pythonProcess = spawn("python", [scr, message]);
 
 
     let output = "";
