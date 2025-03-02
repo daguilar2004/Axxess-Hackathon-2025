@@ -74,10 +74,6 @@
         router.push('/signup'); // Navigate to SignUp page
       };
 
-      
-
-
-
       return {
         goToSignUp,
         Login() {
